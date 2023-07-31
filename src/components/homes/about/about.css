@@ -1,0 +1,8 @@
+#aboutSec{
+    background-image: url('../../../assets//shape-bg/bg-12.svg'),url('../../../assets//shape-bg/bg-2.svg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: 900px 0px, -340px 40px;
+    
+
+}
