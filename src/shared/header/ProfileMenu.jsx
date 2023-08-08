@@ -1,5 +1,6 @@
 import React, { useContext } from "react";
-import {Link} from 'react-router-dom'
+import {Link} from 'react-router-dom';
+import avadetDefault from '../../assets/icons/avater.png';
 import "./header.css";
 import {
   Typography,
@@ -34,7 +35,7 @@ const ProfileMenu = () => {
     {
       label: "Edit Profile",
       icon: Cog6ToothIcon,
-      path:''
+      path:'/editProfile'
     },
 
     {
@@ -62,7 +63,7 @@ const ProfileMenu = () => {
               size="sm"
               alt="candice wu"
               className="border border-blue-500 p-0.5"
-              src={user.photoURL}
+              src={user?.photoURL || avadetDefault}
             />
           </Tooltip>
           <ChevronDownIcon

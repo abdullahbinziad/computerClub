@@ -16,6 +16,10 @@ import DashboardLayOut from '../layouts/DashboardLayOut';
 import AddExecutives from '../Dashboard/AdminDashboard/pages/Members/AddExecutives';
 import ManageExecutives from '../Dashboard/AdminDashboard/pages/Members/ManageExecutives';
 import UpdateExecutives from '../Dashboard/AdminDashboard/pages/Members/UpdateExecutives';
+import ExecutiveSingle from '../pages/executive-single/ExecutiveSingle';
+import EditProfile from '../pages/profile/editprofile/EditProfile';
+import MemberLayOut from '../layouts/MemberLayOut';
+import MyProfile from '../pages/profile/myprofile/MyProfile';
 
  export const router = createBrowserRouter([
     {
@@ -43,9 +47,14 @@ import UpdateExecutives from '../Dashboard/AdminDashboard/pages/Members/UpdateEx
                 element:<Contact></Contact>,
             },
             {
+                path:'/editProfile',
+                element:<EditProfile></EditProfile>,
+            },
+            {
                 path:'/blog',
                 element:<Blogs></Blogs>,
             },
+           
             {
                 path:'/resources',
                 element: <Resources></Resources>,
@@ -53,6 +62,11 @@ import UpdateExecutives from '../Dashboard/AdminDashboard/pages/Members/UpdateEx
             {
                 path:'/executives',
                 element: <Executives></Executives>,
+            },
+            {
+                path:'/executive/:id',
+                element:<ExecutiveSingle></ExecutiveSingle>,
+                loader: ({params})=> fetch(`http://localhost:3000/executives/${params.id}`)
             },
         ]
     },
@@ -73,9 +87,33 @@ import UpdateExecutives from '../Dashboard/AdminDashboard/pages/Members/UpdateEx
                 element:<UpdateExecutives></UpdateExecutives>,
                 loader: ({params})=> fetch(`http://localhost:3000/executives/${params.id}`)
             },
+           
             {
 
             }
         ]
-    }
+    },
+    {
+        path:'/member',
+        element: <MemberLayOut></MemberLayOut>,
+        children:[
+            {
+                path:'/member/',
+                element:<MyProfile></MyProfile>,
+            },
+            {
+                path:'/member/editprofile',
+                element:<EditProfile></EditProfile>,
+            },
+            {
+                path:'/member/profile',
+                element:<MyProfile></MyProfile>,
+            },
+          
+           
+            {
+
+            }
+        ]
+    },
 ])

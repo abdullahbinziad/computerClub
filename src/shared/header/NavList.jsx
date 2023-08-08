@@ -46,7 +46,7 @@ const  NavList=()=> {
     {
       label: "Memmeship",
       icon: UserPlusIcon,
-      path: "/membership",
+      path: "/membership-signup",
     },
    
    

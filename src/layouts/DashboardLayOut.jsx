@@ -7,7 +7,7 @@ const DashboardLayOut = () => {
     return (
         <div className=''>
             <div className='flex justify-center '>
-<div className='w-full max-w-[22rem]'>
+<div className='w-full  max-w-[22rem]'>
 <DashboardSidebar></DashboardSidebar>
 </div>
 <div className=' container  py-20'>

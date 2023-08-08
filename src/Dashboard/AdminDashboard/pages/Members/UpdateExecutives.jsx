@@ -1,14 +1,18 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import Uploader from "../../../../components/uploader/Uploader";
 import { useForm } from "react-hook-form";
 import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css' ;
 import { useLoaderData } from "react-router-dom";
+import JoditEditor from "jodit-react";
 
 const UpdateExecutives = () => {
 
 const loaderData = useLoaderData() ;
+
+const editor = useRef(null);
+const [content, setContent] = useState(loaderData.aboutDesc);
 
 
   const {
@@ -42,6 +46,7 @@ const loaderData = useLoaderData() ;
     console.log(imageUrl);
 
     data.image = imageUrl;
+    data.aboutDesc = content ;
 
 
     console.log(data);
@@ -137,17 +142,55 @@ const loaderData = useLoaderData() ;
               placeholder="Mobile Number : +8801874....."
             />
           </div>
+          <div className=" col-span-2 space-y-2 ">
+     <label htmlFor="">Personal Message</label>
+     <JoditEditor
+			ref={editor}
+			value={content}
+			
+			tabIndex={1} // tabIndex of textarea
+			onBlur={newContent => setContent(newContent)} // preferred to use only this option to update the content for performance reasons
+			onChange={newContent => {}}
+		/>
+     </div>
 
-          <div className="flex flex-col col-span-2 space-y-1">
+     <div className="flex flex-col  space-y-1">
             <label htmlFor="">Image</label>
             <Uploader setImage={setImage} image={image}></Uploader>
           </div>
-        </div>
-        <input
+          <div className="w-full space-y-3">
+          <label htmlFor="">Contact LInk</label>
+          <input
+              {...register("fb")}
+              className="border border-teal-100 py-3 px-6 rounded-md w-full"
+              type="text"
+              name="fb"
+              placeholder="Facebook Profile Link Here"
+              defaultValue={loaderData.fb}
+            /> <input
+            {...register("linkdin")}
+            className="border border-teal-100 py-3 px-6 rounded-md w-full"
+            type="text"
+            name="linkdin"
+            placeholder="Linkdin Profile Link Here"
+            defaultValue={loaderData.linkdin}
+          /> <input
+          {...register("whatsapp")}
+          className="border border-teal-100 py-3 px-6 rounded-md w-full"
+          type="text"
+          name="whatsapp"
+          placeholder="Whatsapp Number : +8801874....."
+          defaultValue={loaderData.whatsapp}
+        />
+         <input
           type="submit"
-          className="bg-green-500 text-white px-6 py-3 my-5 rounded-md cursor-pointer"
+          className="bg-green-500 text-white px-6 py-3 my-5 rounded-md cursor-pointer w-full"
           value="Update Executives"
         />
+          </div>
+          
+        </div>
+       
       </form>
 
       <ToastContainer/>

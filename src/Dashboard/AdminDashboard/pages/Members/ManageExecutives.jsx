@@ -177,9 +177,11 @@ const ManageExecutives = () => {
                       </td>
                       <td className={classes}>
                         <Tooltip content=" Details">
+                        <Link to={`/executive/${_id}`}>
                           <IconButton variant="text" color="blue-gray">
                             <EyeIcon className="h-4 w-4" />
                           </IconButton>
+                          </Link>
                         </Tooltip>
                         <Tooltip content="Edit ">
                        <Link to={`/dashboard/update-executive/${_id}`}>  <IconButton variant="text" color="blue-gray">

@@ -56,11 +56,11 @@ const Uploader = ({setImage,image}) => {
       <div
         className={`${
           previewUrl ? "justify-around" : ""
-        } flex justify-center w-full shadow-lg my-3 rounded-lg`}
+        } flex justify-center w-full shadow-lg my-3 rounded-lg p-4`}
       >
         <div
           ref={wrapperRef}
-          className="drop-file-input  "
+          className="drop-file-input flex-1 "
           onDragEnter={onDragEnter}
           onDragLeave={onDragLeave}
           onDrop={onDrop}

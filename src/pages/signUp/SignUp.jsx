@@ -5,9 +5,12 @@ import { useForm } from "react-hook-form";
 import { BsGoogle } from "react-icons/bs";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
-import Swal from "sweetalert2";
+
 import { EyeIcon, EyeSlashIcon } from "@heroicons/react/24/outline";
 import { UserContext } from "../../AuthProvider/AuthProvider";
+import { ToastContainer, toast } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css' ;
+import Swal from "sweetalert2";
 
 
 const SignUp = () => {
@@ -43,17 +46,16 @@ const [isPass,setIsPass] = useState(false) ;
           console.log(res);
 
           axios
-            .post("https://fashion-canvas-institute-server.vercel.app/users", {
-              name: data.name,
+            .post("http://localhost:3000/createmember", {
+              fullname: data.name,
               email: data.email,
-              role: "user",
+              role: "subscriber",
             })
             .then((response) => {
-              Swal.fire({
-                icon: "success",
-                title: "User Registeration Successful",
-                text: "",
+              toast.success("User Registration Successfully",{
+                position: "bottom-center",
               });
+             
               nevigate("/");
             })
             .catch((error) => {
@@ -70,6 +72,7 @@ const [isPass,setIsPass] = useState(false) ;
 
   return (
     <div className="z-0 relative">
+      
       // error components
       <div className=" bg-center relative ">
       <div
@@ -181,11 +184,11 @@ const [isPass,setIsPass] = useState(false) ;
                           console.log(data.user.displayName);
 
                           axios
-                            .post("https://fashion-canvas-institute-server.vercel.app/users", {
+                            .post("http://localhost:3000/createmember", {
                               name: data.user.displayName,
                               email: data.user.email,
                               image: data.user.photoURL,
-                              role: "user",
+                              role: "subscriber",
                             })
                             .then((response) => {
                               console.log(response);
@@ -195,12 +198,12 @@ const [isPass,setIsPass] = useState(false) ;
                               ) {
                                 nevigate("/");
                               } else {
-                                Swal.fire({
-                                  icon: "success",
-                                  title: "User Registration Completed",
-                                  text: "",
-                                });
-                                nevigate("/");
+                                toast.success("User Registration Successfully",{
+                                  position: "bottom-center",
+                                })
+                                  nevigate("/");
+                              
+                               
                               }
                             })
                             .catch((error) => {
@@ -234,6 +237,9 @@ const [isPass,setIsPass] = useState(false) ;
         </div>
       </div>
     </div>
+
+
+ 
     </div>
   );
 };
