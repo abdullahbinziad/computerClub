@@ -1,6 +1,6 @@
 import axios from "axios";
 import React from "react";
-import { useQuery } from "react-query";
+import { useQuery } from "@tanstack/react-query";
 
 import { PencilIcon, TrashIcon, EyeIcon } from "@heroicons/react/24/solid";
 import {

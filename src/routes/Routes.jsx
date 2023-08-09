@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import {
     createBrowserRouter,
   
@@ -20,6 +20,8 @@ import ExecutiveSingle from '../pages/executive-single/ExecutiveSingle';
 import EditProfile from '../pages/profile/editprofile/EditProfile';
 import MemberLayOut from '../layouts/MemberLayOut';
 import MyProfile from '../pages/profile/myprofile/MyProfile';
+
+
 
  export const router = createBrowserRouter([
     {
@@ -49,6 +51,8 @@ import MyProfile from '../pages/profile/myprofile/MyProfile';
             {
                 path:'/editProfile',
                 element:<EditProfile></EditProfile>,
+                
+               
             },
             {
                 path:'/blog',

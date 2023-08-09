@@ -35,7 +35,7 @@ const ProfileMenu = () => {
     {
       label: "Edit Profile",
       icon: Cog6ToothIcon,
-      path:'/editProfile'
+      path:'/member/editprofile'
     },
 
     {

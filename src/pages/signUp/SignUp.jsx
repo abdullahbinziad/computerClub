@@ -185,7 +185,7 @@ const [isPass,setIsPass] = useState(false) ;
 
                           axios
                             .post("http://localhost:3000/createmember", {
-                              name: data.user.displayName,
+                              fullname: data.user.displayName,
                               email: data.user.email,
                               image: data.user.photoURL,
                               role: "subscriber",

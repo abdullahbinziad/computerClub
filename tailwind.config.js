@@ -33,7 +33,7 @@ module.exports = withMT({
       backgroundImage: {
         'primary-grad': "linear-gradient(25deg, hsla(214, 92%, 47%, 1) 0%, hsla(231, 85%, 24%, 1) 100%)",
         'secondary-grad': "linear-gradient(62deg, #b597f6 0%, #96c6ea 100%);",
-        'card-grad2': "linear-gradient(62deg, #a1c4fd 0%, #c2e9fb 100%);",
+        'card-grad2': "linear-gradient(130deg, #a1c4fd 0%, #c2e9fb 100%);",
         'card-grad1': "linear-gradient(62deg, #f6d5f7 0%, #fbe9d7 100%);",
         'card-grad3': "linear-gradient(to top, #fdcbf1 0%, #e6dee9 100%)",
         'btn-primary': "linear-gradient(90deg, hsla(22, 100%, 78%, 1) 0%, hsla(2, 78%, 62%, 1) 100%)",

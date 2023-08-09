@@ -9,6 +9,7 @@ import Swal from "sweetalert2";
 import axios from "axios";
 import { EyeIcon, EyeSlashIcon } from "@heroicons/react/24/outline";
 import { UserContext } from "../../AuthProvider/AuthProvider";
+import { toast } from "react-toastify";
 
 const Login = () => {
   const [isPass,setIsPass] = useState(false) ;
@@ -151,8 +152,8 @@ const Login = () => {
           console.log(data.user.displayName);
 
           axios
-            .post("https://fashion-canvas-institute-server.vercel.app/users", {
-              name: data.user.displayName,
+            .post("http://localhost:3000/createmember", {
+              fullname: data.user.displayName,
               email: data.user.email,
               image: data.user.photoURL,
               role: "user",
@@ -165,11 +166,9 @@ const Login = () => {
               ) {
                 nevigate(from, { replace: true });
               } else {
-                Swal.fire({
-                  icon: "success",
-                  title: "User Registration Completed",
-                  text: "",
-                });
+                toast.success("User Registration Successfully",{
+                  position: "bottom-center",
+                })
                 nevigate(from, { replace: true });
               }
             })

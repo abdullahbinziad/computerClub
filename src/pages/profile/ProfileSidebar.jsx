@@ -22,6 +22,7 @@ import {
 } from "@heroicons/react/24/solid";
 import { ChevronRightIcon, ChevronDownIcon } from "@heroicons/react/24/outline";
 import { Link } from "react-router-dom";
+import useMember from "../../hooks/useMember";
 
  
 export default function ProfileSidebar() {
@@ -31,15 +32,24 @@ export default function ProfileSidebar() {
     setOpen(open === value ? 0 : value);
   };
  
+// verify is Member 
+const [isMember] = useMember()
+console.log(isMember);
+
+
+
   return (
     <Card className="  top-[calc(120px-2rem)] h-[calc(100%-6rem)] left-4 bg-[#5846aa]  w-full max-w-[20rem] p-4 shadow-xl  shadow-white-900/5">
    
      <div className="mb-2 p-4 flex flex-col justify-center items-center ">
     
     <img className=" my-4 rounded-full object-cover w-20  border-4 h-20" src="https://imagevars.gulfnews.com/2019/09/04/Sheikh-Abdullah-Bin-Zayed-Bin-Sultan-Al-Nahyan-20190904_16cfa7f19d8_large.jpg" alt="" />
-    <Typography variant="h5"  color="white">
-    ID: 2073547
-    </Typography>
+   { isMember ? <Typography variant="h5"  color="white">
+    ID: 2073547  
+    </Typography> :
+     <Typography variant="h6"  color="white">
+     No Membership 
+    </Typography>}
   </div>
   <List>
     <Accordion
@@ -63,12 +73,7 @@ export default function ProfileSidebar() {
       </ListItem>
       <AccordionBody className="py-1">
         <List className="p-0 text-white">
-          <ListItem>
-            <ListItemPrefix>
-              <ChevronRightIcon strokeWidth={3} className="h-3 w-5 text-white" />
-            </ListItemPrefix>
-            My Profile
-          </ListItem>
+     
           <Link to='/member/editprofile'>
           <ListItem>
             <ListItemPrefix>
@@ -77,22 +82,23 @@ export default function ProfileSidebar() {
             Edit Profile
           </ListItem>
           </Link>
-          <ListItem>
+        { isMember && <ListItem >
             <ListItemPrefix>
               <ChevronRightIcon strokeWidth={3} className="h-3 w-5 text-white" />
             </ListItemPrefix>
             Add Projects
           </ListItem>
+          }
           
         </List>
       </AccordionBody>
     </Accordion>
-    <Accordion
+   { isMember && <Accordion
       open={open === 2}
       icon={
         <ChevronDownIcon
           strokeWidth={2.5}
-          className={`mx-auto h-4 w-4 transition-transform ${open === 2 ? "rotate-180" : ""}`}
+          className={`mx-auto disabled:opacity-75 h-4 w-4 transition-transform ${open === 2 ? "rotate-180" : ""}`}
         />
       }
     >
@@ -135,7 +141,9 @@ export default function ProfileSidebar() {
         </List>
       </AccordionBody>
     </Accordion>
-    <Accordion
+
+    }
+   { isMember && <Accordion
       open={open === 3}
       icon={
         <ChevronDownIcon
@@ -171,17 +179,17 @@ export default function ProfileSidebar() {
       
         </List>
       </AccordionBody>
-    </Accordion>
+    </Accordion>}
   
-    <ListItem className="text-white">
+  { isMember && <ListItem className="text-white">
       <ListItemPrefix>
         <BookOpenIcon className="h-5 w-5 text-white" />
       </ListItemPrefix>
       My Activity
      
-    </ListItem>
+    </ListItem>}
     <hr className="my-2 border-white-50" />
-    <ListItem className="text-white">
+   { isMember && <ListItem className="text-white">
       <ListItemPrefix>
         <InboxIcon className="h-5 w-5 text-white" />
       </ListItemPrefix>
@@ -189,13 +197,15 @@ export default function ProfileSidebar() {
       <ListItemSuffix>
         <Chip value="14" size="sm" variant="ghost" color="white" className="text-white rounded-full" />
       </ListItemSuffix>
-    </ListItem>
-    <ListItem className="text-white">
+    </ListItem>}
+  <Link to="/member" > <ListItem className="text-white">
       <ListItemPrefix>
         <UserCircleIcon className="h-5 w-5 text-white" />
       </ListItemPrefix>
       Profile
     </ListItem>
+
+    </Link>
 
     <ListItem className="text-white">
       <ListItemPrefix>

@@ -2,11 +2,12 @@ import axios from 'axios';
 import React, { useContext, useEffect } from 'react';
 
 import { useLocation, useNavigate } from 'react-router-dom';
-import { UserContext } from '../authprovider/AuthProvider';
+import { UserContext } from '../AuthProvider/AuthProvider';
+
 
 
 const axiosSecure = axios.create({
-    baseURL: 'https://fashion-canvas-institute-server.vercel.app'
+    baseURL: 'http://localhost:3000'
 })
 
 const useAxiosSecure = () => {
