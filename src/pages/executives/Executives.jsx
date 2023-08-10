@@ -1,6 +1,6 @@
 import React from "react";
 import MembersCard from "../../components/Cards/MembersCard";
-import { useQuery } from "react-query";
+import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 
 

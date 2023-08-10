@@ -20,6 +20,7 @@ import ExecutiveSingle from '../pages/executive-single/ExecutiveSingle';
 import EditProfile from '../pages/profile/editprofile/EditProfile';
 import MemberLayOut from '../layouts/MemberLayOut';
 import MyProfile from '../pages/profile/myprofile/MyProfile';
+import ManageMember from '../Dashboard/AdminDashboard/pages/Members/ManageMember';
 
 
 
@@ -85,6 +86,10 @@ import MyProfile from '../pages/profile/myprofile/MyProfile';
             {
                 path:'/dashboard/manage-executive',
                 element:<ManageExecutives></ManageExecutives>,
+            },
+            {
+                path:'/dashboard/manage-member',
+                element:<ManageMember></ManageMember>,
             },
             {
                 path:'/dashboard/update-executive/:id',

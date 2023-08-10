@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import "./header.css";
 import {
  
@@ -18,14 +18,20 @@ QueueListIcon,
   BookmarkIcon,
   HomeIcon
 } from "@heroicons/react/24/outline";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { UserContext } from "../../AuthProvider/AuthProvider";
+import useAdmin from "../../hooks/useAdmin";
+import useMember from "../../hooks/useMember";
+import { toast } from "react-toastify";
+
 
 
 const  NavList=()=> {
 
   const {user} = useContext(UserContext);
-
+ const [isAdmin,isAdminLoading] = useAdmin() ;
+const [isMember, isMemberLoading] = useMember();
+const nevigate = useNavigate();
 
   const navListItems = [
     {
@@ -43,11 +49,7 @@ const  NavList=()=> {
       icon: AcademicCapIcon,
       path: "/events",
     },
-    {
-      label: "Memmeship",
-      icon: UserPlusIcon,
-      path: "/membership-signup",
-    },
+    
    
    
     // {
@@ -57,6 +59,20 @@ const  NavList=()=> {
     // },
   
   ];
+
+  //the modal 
+  // the modal
+
+const handleOpen = () => {
+  // Handle confirm action here
+  toast.success(" Please Update Profile 100%", {
+    theme: "colored",
+    position: "top-center",
+autoClose: 6000,
+  })
+  nevigate('/member/editprofile')
+  
+};
 
 
 
@@ -77,7 +93,22 @@ const  NavList=()=> {
           </MenuItem>
         </Typography>
       ))}
-       { user &&
+       { !isMember &&
+        <Typography
+        onClick={handleOpen}
+        variant="small"
+        color="blue-gray"
+        className="font-normal dark:text-white"
+      >
+        <MenuItem className="flex justify-between  gap-3 ">
+          <Link className="flex items-center gap-2" to='/member/editprofile'>
+            {React.createElement(UserPlusIcon, { className: "h-[26px] w-[26px]" })}{" "}
+           Become Member
+          </Link>
+        </MenuItem>
+      </Typography>
+       }
+       { isAdmin &&
         <Typography
         
         variant="small"
@@ -85,13 +116,14 @@ const  NavList=()=> {
         className="font-normal dark:text-white"
       >
         <MenuItem className="flex justify-between  gap-3 ">
-          <Link className="flex  gap-3" to='/dashboard'>
-            {React.createElement(BookmarkIcon, { className: "h-[18px] w-[18px]" })}{" "}
-           Dashboard
+          <Link className="flex items-center gap-2" to='/dashboard'>
+            {React.createElement(BookmarkIcon, { className: "h-[26px] w-[26px]" })}{" "}
+           Admin Dashboard
           </Link>
         </MenuItem>
       </Typography>
        }
+    
     </ul>
   );
 }

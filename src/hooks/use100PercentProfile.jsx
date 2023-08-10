@@ -13,7 +13,7 @@ const use100PercentProfile = () => {
         isLoading,
         error,
         data = [],
-        refetch,
+       refetch,
         isFetching,
       } = useQuery({
         queryKey: ["repoData", user],

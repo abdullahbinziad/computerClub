@@ -104,12 +104,14 @@ export default function DashboardSidebar() {
           </ListItem>
           <AccordionBody className="py-1">
             <List className="p-0">
-              <ListItem>
+            <Link to='/dashboard/manage-member'>
+            <ListItem>
                 <ListItemPrefix>
                   <ChevronRightIcon strokeWidth={3} className="h-3 w-5" />
                 </ListItemPrefix>
                Manage Members
               </ListItem>
+            </Link>
 
               <Link to='/dashboard/manage-executive'>
               <ListItem>

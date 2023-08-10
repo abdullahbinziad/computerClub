@@ -43,7 +43,7 @@ const EditProfile = () => {
     isLoading,
     error,
     data = [],
-    
+    refetch:refetchRepoData,
     isFetching,
   } = useQuery({
     queryKey: ["repoData", user?.email],
@@ -165,8 +165,22 @@ const EditProfile = () => {
     setAddress((prevData) => ({ ...prevData, [name]: value }));
   };
 
-  // const { fullname, department, batch,session, studentID } = studentInfo;
-  // const { email, mobile, fulladdress } = address;
+// handle appy member
+
+const handleApplyMembership =()=>{
+  axios
+  .put(`http://localhost:3000/member/updateRole/${user?.email}`,{role:"pending"} )
+  .then(function (response) {
+    console.log(response);
+    if (response.status == 200) {
+      toast.success("Application Submit to Admin");
+      refetch()
+    }
+  })
+  .catch(function (error) {
+    console.log(error);
+  });
+}
 
  
 
@@ -177,9 +191,9 @@ const EditProfile = () => {
   {!isMember && <div className="bg-card-grad2 rounded-md mb-3 py-3 px-10 justify-between text-white flex gap-3">
    <h1 className="text-center text-xl font-bold py-2 text-gray-700 ">You Profile is {totalPoints<=100 ? totalPoints : 100}% Done </h1>
 
-<button  disabled={totalPoints>=100 ? false : true} className={`bg-green-600 py-2 px-4 rounded-lg ${
-          totalPoints>=100 ? '' : 'disabled:opacity-25'
-        }`}>Apply for Membership </button>
+<button onClick={handleApplyMembership} disabled={totalPoints< 100 || data[0]?.role ==="pending"  ? true : false} className={`bg-green-600 py-2 px-4 rounded-lg ${
+          totalPoints < 100 || data[0]?.role ==="pending" ? 'disabled:opacity-25' : ''
+        }`}>{data[0]?.role =="pending" ?  "Application in Pending" : "Apply for Membership"} </button>
 
 
   </div>}

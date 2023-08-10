@@ -28,7 +28,7 @@ const ProfileMenu = () => {
 
   const profileMenuItems = [
     {
-      label: "My Profile",
+      label: "Dashboard",
       icon: ShoppingBagIcon,
       path: ''
     },
@@ -38,15 +38,13 @@ const ProfileMenu = () => {
       path:'/member/editprofile'
     },
 
-    {
-      label: "Add Toys",
-      icon: PlusIcon,
-      path:'/addNewToys'
-    },
+   
   ];
 
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
   const closeMenu = () => setIsMenuOpen(false);
+
+  
 
   return (
     <Menu open={isMenuOpen} handler={setIsMenuOpen} placement="bottom-end">
